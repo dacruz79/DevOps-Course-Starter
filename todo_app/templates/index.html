@@ -12,7 +12,33 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
         <!-- List the todo items here -->
+        <table>
+          <tr>
+              {%for col in data[0].keys()%}
+                <th>{{ col }}</th>
+              {%endfor%}
+          </tr>
+          {%for entry in data%}
+            <tr>
+              {%for col in entry.values()%}
+                <td>{{ col }}</td>
+              {%endfor%}
+            </tr>
+          {%endfor%}
+        </table>
       </ul>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Add New Item</h2>
+      <form action="{{ url_for('add_new_item') }}" method="post">
+        Status: <input type="text" name="item_status" style=width:100px value="Not Started" readonly>
+        Title:  <input type="text" name="item_title" style=width:600px >
+        <input type="submit" value="Submit">
+      </form><br><br>
+    </div>
+  </div>
+
 {% endblock %}

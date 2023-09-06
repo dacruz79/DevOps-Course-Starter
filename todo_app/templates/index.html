@@ -18,9 +18,9 @@
                 <th>{{ col }}</th>
               {%endfor%}
           </tr>
-          {%for i in range(0, len)%}
+          {%for entry in data%}
             <tr>
-              {%for col in data[i].values()%}
+              {%for col in entry.values()%}
                 <td>{{ col }}</td>
               {%endfor%}
             </tr>

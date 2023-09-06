@@ -2,8 +2,7 @@ from flask import Flask, render_template, session, request, redirect, url_for
 
 from todo_app.flask_config import Config
 
-from todo_app.data.session_items import get_items
-from todo_app.data.session_items import add_item
+from todo_app.data.session_items import get_items, add_item
 
 app = Flask(__name__)
 app.config.from_object(Config())

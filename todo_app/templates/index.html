@@ -15,6 +15,9 @@
         <table>
           <tr>
               {%for col in data[0].keys()%}
+                {% if col == 'closed' %}
+                  {% set col = "status" %}"
+                {%endif%}
                 <th>{{ col }}</th>
               {%endfor%}
           </tr>
@@ -34,8 +37,9 @@
     <div class="col-md-12">
       <h2>Add New Item</h2>
       <form action="{{ url_for('add_new_item') }}" method="post">
-        Status: <input type="text" name="item_status" style=width:100px value="Not Started" readonly>
-        Title:  <input type="text" name="item_title" style=width:600px >
+        List: <input type="text" name="list_name" style=width:100px value='To Do'>
+        Title:  <input type="text" name="item_title" style=width:300px >
+        Description: <input type="text" name="item_desc" style=width:400px >
         <input type="submit" value="Submit">
       </form><br><br>
     </div>

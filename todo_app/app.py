@@ -1,10 +1,10 @@
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, render_template, session, request, redirect, url_for, json
 
 from todo_app.flask_config import Config
 
 from todo_app.data.session_items import get_items, add_item
 
-from todo_app.data.trello_items import get_to_do_items, add_to_do_item
+from todo_app.data.trello_items import get_to_do_items, add_item_to_list, change_list_of_item, get_board_list
 
 app = Flask(__name__)
 app.config.from_object(Config())
@@ -14,6 +14,7 @@ app.config.from_object(Config())
 
 
 def index():
+    get_board_list()
     data = get_to_do_items()
     return render_template('index.html', data=data )
 
@@ -30,5 +31,13 @@ def add_new_item():
         error_text = 'No title provided!'
         return (error_text)
     
-    add_to_do_item(item_title, item_description)
+    add_item_to_list(item_title, item_description,list_name)
+    return redirect(url_for('index'))
+
+@app.route('/complete', methods=['post'])
+def complete():
+    card_id = request.form.get("Complete")
+    
+    change_list_of_item(card_id,'Done')
+    
     return redirect(url_for('index'))

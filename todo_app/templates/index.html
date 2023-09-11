@@ -25,6 +25,11 @@
             <tr>
               {%for col in entry.values()%}
                 <td>{{ col }}</td>
+                {%if loop.index == entry|length%}
+                <form action="{{ url_for('complete') }}" method="post">
+                  <td><button type="submit" name="Complete" value="{{ entry.id }}"></button></td>
+                </form>
+                {%endif%}
               {%endfor%}
             </tr>
           {%endfor%}

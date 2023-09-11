@@ -27,7 +27,7 @@
                 <td>{{ col }}</td>
                 {%if loop.index == entry|length%}
                 <form action="{{ url_for('complete') }}" method="post">
-                  <td><button type="submit" name="Complete" value="{{ entry.id }}"></button></td>
+                  <td><button type="submit" name="Complete" value="{{ entry.id }}">Complete</button></td>
                 </form>
                 {%endif%}
               {%endfor%}

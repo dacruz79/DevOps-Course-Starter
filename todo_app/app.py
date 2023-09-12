@@ -4,6 +4,12 @@ from todo_app.flask_config import Config
 
 from todo_app.data.trello_items import get_to_do_items, add_item_to_list, change_list_of_item, get_board_list
 
+import os
+
+from todo_app.Item import Item
+
+board_list = os.getenv("BOARD_LISTS")
+
 app = Flask(__name__)
 app.config.from_object(Config())
 
@@ -20,6 +26,16 @@ def add_new_item():
     list_status = request.form['list_name']
     item_name = request.form['item_title']
     item_description = request.form['item_desc']
+
+    found = 0
+    for reqVal in enumerate(board_list):
+        if reqVal == list_status :
+            found = 1
+            break
+
+    if not found:
+        error_text  = 'List \'' + list_status + '\' not supported.'
+        return (error_text)
 
     if item_name == '':
         error_text = 'No title provided!'

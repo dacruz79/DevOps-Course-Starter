@@ -2,6 +2,8 @@ import requests
 import dotenv
 import os
 
+from todo_app.Item import Item
+
 dotenv.load_dotenv()
 
 trello_key = os.getenv("API_KEY")
@@ -45,30 +47,35 @@ def get_to_do_items():
         list: The list of saved items.
     """
 
-    open_list_id = "64f9997df2894da1f3f1c05d"
-
     # DevOps BOW board, look to pass this in to make more dynamic
     board_id = "64f9997df2894da1f3f1c056"
 
-    # reqUrl = f"https://api.trello.com/1/lists/{open_list_id}/cards"
     reqUrl = f"https://api.trello.com/1/boards/{board_id}/lists"
 
     query_params = {
         "key": trello_key,
         "token": trello_api_token,
-        "cards": "open",
-        "card_fields": "id,closed,name"
+        "cards": "open"
+        #"card_fields": "id,closed,name"
     }
 
     response = requests.get(reqUrl, params=query_params)
 
     response_json = response.json()
 
-    cards = []
+    ##l = 1
+    obj_list = []
     for trello_list in response_json:
         for card in trello_list['cards']:
-            cards.append(card)
-    return cards
+            ##globals()[f'item"_{l}'] = Item.from_trello_card(card, trello_list)
+            ##i_1 = Item.from_trello_card(card, trello_list)
+            ##print(i_1.name + ' ' + i_1.id + ' ' + i_1.status)
+            ##l += 1
+            #obj_list.append(globals()[f'item_{l}'])
+            obj_list.append(Item.from_trello_card(card, trello_list))
+
+    return obj_list 
+
 
 def add_item_to_list(title, description, add_to_list_name = 'To Do'):
     """

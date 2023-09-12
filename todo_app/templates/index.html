@@ -14,23 +14,18 @@
         <!-- List the todo items here -->
         <table>
           <tr>
-              {%for col in data[0].keys()%}
-                {% if col == 'closed' %}
-                  {% set col = "status" %}"
-                {%endif%}
-                <th>{{ col }}</th>
-              {%endfor%}
+              <th>id</th>
+              <th>status</th>
+              <th>name</th>
           </tr>
-          {%for entry in data%}
+          {%for obj in data%}
             <tr>
-              {%for col in entry.values()%}
-                <td>{{ col }}</td>
-                {%if loop.index == entry|length%}
-                <form action="{{ url_for('complete') }}" method="post">
-                  <td><button type="submit" name="Complete" value="{{ entry.id }}">Complete</button></td>
-                </form>
-                {%endif%}
-              {%endfor%}
+              <td>{{ obj.id }}</td>
+              <td>{{ obj.status }}</td>
+              <td>{{ obj.name }}</td>
+              <form action="{{ url_for('complete') }}" method="post">
+               <td><button type="submit" name="Complete" value="{{ obj.id }}">Complete</button></td>
+              </form>
             </tr>
           {%endfor%}
         </table>

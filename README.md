@@ -53,9 +53,6 @@ To get the Board Id:
 ```
     [BOARD_ID=]
 
-Set the list of lists you have for your board i.e. 'To Do','Done'
-    BOARD_LISTS=[]
-
 ## Running the App
 
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:

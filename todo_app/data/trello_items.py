@@ -1,6 +1,4 @@
-import requests
-import dotenv
-import os
+import requests, dotenv, os
 
 from todo_app.Item import Item
 

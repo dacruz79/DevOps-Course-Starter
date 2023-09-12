@@ -2,13 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 from todo_app.flask_config import Config
 
-from todo_app.data.trello_items import get_to_do_items, add_item_to_list, change_list_of_item, get_board_list
-
-import os
-
-from todo_app.Item import Item
-
-board_list = os.getenv("BOARD_LISTS")
+from todo_app.data.trello_items import get_to_do_items, add_item_to_list, change_list_of_item, get_board_list, list_name
 
 app = Flask(__name__)
 app.config.from_object(Config())
@@ -28,10 +22,9 @@ def add_new_item():
     item_description = request.form['item_desc']
 
     found = 0
-    for reqVal in enumerate(board_list):
-        if reqVal == list_status :
+    for name in list_name.keys():
+        if list_status == name:
             found = 1
-            break
 
     if not found:
         error_text  = 'List \'' + list_status + '\' not supported.'

@@ -1,13 +1,15 @@
-import requests, dotenv, os
+import requests, os
 
 from todo_app.Item import Item
 
-dotenv.load_dotenv()
-
-trello_key = os.getenv("API_KEY")
-trello_api_token = os.getenv("API_TOKEN")
 board_id = os.getenv("BOARD_ID")
 list_name = {}
+
+def trello_key():
+    return os.getenv("API_KEY")
+
+def trello_api_token():
+    return os.getenv("API_TOKEN")
 
 def get_board_list():
     """
@@ -21,8 +23,8 @@ def get_board_list():
     reqUrl = f"https://api.trello.com/1/boards/{board_id}/lists"
 
     query_params = {
-        "key": trello_key,
-        "token": trello_api_token,
+        "key": trello_key(),
+        "token": trello_api_token(),
         "fields": "name,id"
     }
 
@@ -47,8 +49,8 @@ def get_to_do_items():
     reqUrl = f"https://api.trello.com/1/boards/{board_id}/lists"
 
     query_params = {
-        "key": trello_key,
-        "token": trello_api_token,
+        "key": trello_key(),
+        "token": trello_api_token(),
         "cards": "open"
     }
 
@@ -81,8 +83,8 @@ def add_item_to_list(title, description, list_status = 'To Do'):
     reqUrl = f"https://api.trello.com/1/cards"
     
     query_params = {
-        "key": trello_key,
-        "token": trello_api_token,
+        "key": trello_key(),
+        "token": trello_api_token(),
         "idList": list_id,
         "name": title,
         "desc": description,
@@ -109,8 +111,8 @@ def change_list_of_item(card_id, list_status):
     reqUrl = f"https://api.trello.com/1/cards/{card_id}"
 
     query_params = {
-        "key": trello_key,
-        "token": trello_api_token,
+        "key": trello_key(),
+        "token": trello_api_token(),
         "idList": list_id
     }
 

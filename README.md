@@ -32,7 +32,26 @@ You'll also need to clone a new `.env` file from the `.env.template` to store lo
 $ cp .env.template .env  # (first time only)
 ```
 
+You will need to create a Trello account and generate and API Key and Token. Follow the instructions in the below links:
+    [https://trello.com/signup]
+    [https://trello.com/app-key]
+
+Once you have an account, create some cards (at least one in To Do list.)
+
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
+
+Set the following value in the `'.env` file once you have got these from Trello.
+    [API_KEY=]
+    [API_TOKEN=]
+
+To get the Board Id:
+```bash
+    * Go to your Trello Board
+    * Add ".json" to the end of the URL
+    * Format the JSON so it is readable, search for idBoard OR
+    * the first value is normally the id {"id":"....
+```
+    [BOARD_ID=]
 
 ## Running the App
 
@@ -52,3 +71,10 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+You will be able to see:
+```bash
+ * All your tasks
+ * If you want to move a task to Done hit the Complete button
+ * Add new tasks to a list you have available on Trello board i.e. To Do, Doing, Done.
+``` 

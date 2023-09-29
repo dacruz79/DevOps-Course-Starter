@@ -14,15 +14,18 @@
         <!-- List the todo items here -->
         <table>
           <tr>
-              {%for col in data[0].keys()%}
-                <th>{{ col }}</th>
-              {%endfor%}
+              <th>id</th>
+              <th>status</th>
+              <th>name</th>
           </tr>
-          {%for entry in data%}
+          {%for obj in data%}
             <tr>
-              {%for col in entry.values()%}
-                <td>{{ col }}</td>
-              {%endfor%}
+              <td>{{ obj.id }}</td>
+              <td>{{ obj.status }}</td>
+              <td>{{ obj.name }}</td>
+              <form action="{{ url_for('complete') }}" method="post">
+               <td><button type="submit" name="Complete" value="{{ obj.id }}">Complete</button></td>
+              </form>
             </tr>
           {%endfor%}
         </table>
@@ -34,8 +37,9 @@
     <div class="col-md-12">
       <h2>Add New Item</h2>
       <form action="{{ url_for('add_new_item') }}" method="post">
-        Status: <input type="text" name="item_status" style=width:100px value="Not Started" readonly>
-        Title:  <input type="text" name="item_title" style=width:600px >
+        List: <input type="text" name="list_name" style=width:100px value='To Do'>
+        Title:  <input type="text" name="item_title" style=width:300px >
+        Description: <input type="text" name="item_desc" style=width:400px >
         <input type="submit" value="Submit">
       </form><br><br>
     </div>

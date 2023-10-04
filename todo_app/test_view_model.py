@@ -26,7 +26,7 @@ def test_view_model_to_do_items():
     view_model = ViewModel(items)
 
     # Act
-    returned_items = view_model.done_items
+    returned_items = view_model.to_do_items
 
     # Assert
     assert len(returned_items) == 1

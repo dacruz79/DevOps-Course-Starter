@@ -18,13 +18,13 @@
               <th>status</th>
               <th>name</th>
           </tr>
-          {%for obj in data%}
+          {%for item in view_model.items%}
             <tr>
-              <td>{{ obj.id }}</td>
-              <td>{{ obj.status }}</td>
-              <td>{{ obj.name }}</td>
+              <td>{{ item.id }}</td>
+              <td>{{ item.status }}</td>
+              <td>{{ item.name }}</td>
               <form action="{{ url_for('complete') }}" method="post">
-               <td><button type="submit" name="Complete" value="{{ obj.id }}">Complete</button></td>
+               <td><button type="submit" name="Complete" value="{{ item.id }}">Complete</button></td>
               </form>
             </tr>
           {%endfor%}

@@ -12,20 +12,11 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config())
     
-    # All the routes and setup code etc
-    # e.g.
-    # @app.route('/')
-    # def index():
-    #     ...
-    
-
     @app.route('/')
 
     def index():
         get_board_list()
         items = get_to_do_items()
-
-        item_list: list[Item] = []
 
         item_view_model = ViewModel(items)
         return render_template('index.html', view_model=item_view_model)

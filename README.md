@@ -78,3 +78,18 @@ You will be able to see:
  * If you want to move a task to Done hit the Complete button
  * Add new tasks to a list you have available on Trello board i.e. To Do, Doing, Done.
 ``` 
+
+## Testing
+
+To run all tests configured, where files are test_*py or *_test.py do so by running:
+```bash
+$ poetry run pytest
+```
+
+You should see either all tests PASSED or some FAILED:
+```bash
+ * ====================================================================================================================== short test summary info====================================================================================================================== 
+ * FAILED todo_app/test_view_model.py::test_view_model_to_do_items - AssertionError: assert 'Done' == 'To Do'
+ * ==================================================================================================================== 1 failed, 1 passed in 9.24s===================================================================================================================
+```
+

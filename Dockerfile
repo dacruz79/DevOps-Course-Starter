@@ -26,9 +26,19 @@ COPY . .
 ENV PATH="${PATH}:/root/.local/bin/"
 RUN poetry install
 
+FROM base as production
 # Expose the port that the application listens on.
 EXPOSE 8000
 
 # Run the application.
 # CMD poetry run gunicorn --bind 0.0.0.0 "todo_app.app:create_app()"
 ENTRYPOINT [ "bash", "./my_entrypoint_prod.sh" ]
+
+FROM base as development
+
+# Expose the port that the application listens on.
+EXPOSE 5000
+
+# Run the application.
+# CMD poetry run gunicorn --bind 0.0.0.0 "todo_app.app:create_app()"
+ENTRYPOINT [ "bash", "./my_entrypoint_dev.sh" ]

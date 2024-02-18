@@ -16,7 +16,7 @@ services:
       - 8000:5000
     env_file:
       - .env
-    volumes:
-      - ./todo_app:/app/todo_app/todo_app
+#    volumes:
+#      - ./todo_app:/app/todo_app/todo_app
 
 

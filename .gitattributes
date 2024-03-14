@@ -1,0 +1,4 @@
+*.csv eol=lf
+wait-for-it.sh eol=lf
+*.sql diff
+*.sh eol=lf

@@ -42,3 +42,8 @@ EXPOSE 5000
 # Run the application.
 # CMD poetry run gunicorn --bind 0.0.0.0 "todo_app.app:create_app()"
 ENTRYPOINT [ "bash", "./my_entrypoint_dev.sh" ]
+
+FROM base as test
+
+ENTRYPOINT poetry run pytest
+
